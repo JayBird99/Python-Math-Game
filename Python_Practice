@@ -1,0 +1,42 @@
+import time
+import random
+import operator
+
+QuestionCount = 0
+CorrectQuestions = 0
+
+game_start = time.time()
+
+while QuestionCount < 20:
+    Exp1 =  {
+        "+": operator.add,
+        #"-": operator.sub,
+        #"/": operator.division,
+        "*": operator.mul,
+            } 
+    Exp2 = random.choice(list(Exp1.keys()))
+    
+    NumList1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    NumList2 = random.choice(NumList1)
+    NumList3 = random.choice(NumList1)
+    
+    MathProblem = str(NumList2)+Exp2+str(NumList3)
+    op_func = Exp1[Exp2]
+    result = op_func(NumList2, NumList3)
+    
+    Answer = int(input(MathProblem))
+
+    if Answer == result:
+        CorrectQuestions = CorrectQuestions +1
+      
+    print('Number of correct question. {}'.format(CorrectQuestions))
+    QuestionCount = QuestionCount +1
+    print(result)
+    
+
+game_end = time.time()
+
+elaspe = round((game_end - game_start),4)
+
+print('All Questions Solved in {} seconds'.format(elaspe))
+print('You got {} question right'.format(CorrectQuestions))  
